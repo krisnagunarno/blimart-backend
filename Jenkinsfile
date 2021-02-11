@@ -1,2 +1,2 @@
-@Library('my-shared-library@develop') _
-java()
+@Library('ultimate-library@main') _
+backend()
