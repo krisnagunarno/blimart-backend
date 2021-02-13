@@ -8,3 +8,6 @@ COPY --from=builder /usr/src/app/target/*.jar /usr/app/app.jar
 COPY --from=builder /usr/src/app/keystore.p12 /
 EXPOSE 8080
 ENTRYPOINT ["java","-jar","/usr/app/app.jar"]
+
+RUN wget -O apm-agent.jar https://search.maven.org/remotecontent?filepath=co/elastic/apm/elastic-apm-agent/1.2.0/elastic-apm-agent-1.2.0.jar
+CMD java -javaagent:/usr/app/apm-agent.jar $JVM_OPTIONS -jar $JAR_NAME
