@@ -10,4 +10,7 @@ EXPOSE 8080
 ENTRYPOINT ["java","-jar","/usr/app/app.jar"]
 
 RUN wget -O apm-agent.jar https://search.maven.org/remotecontent?filepath=co/elastic/apm/elastic-apm-agent/1.2.0/elastic-apm-agent-1.2.0.jar
-CMD java -javaagent:/usr/app/apm-agent.jar $JVM_OPTIONS -jar $JAR_NAME
+CMD java -javaagent:/usr/app/elastic-apm-agent-1.2.0.jar \
+     -Delastic.apm.service_name=backend \
+     -Delastic.apm.server_url=http://ec2-34-232-6-130.compute-1.amazonaws.com:8200 \
+     -Delastic.apm.application_packages=com.bliblifuturebackend.bliblimart
