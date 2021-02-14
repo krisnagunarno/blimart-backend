@@ -9,7 +9,7 @@ COPY --from=builder /usr/src/app/keystore.p12 /
 EXPOSE 8080
 ENTRYPOINT ["java","-jar","/usr/app/app.jar"]
 
-RUN wget -O https://search.maven.org/remotecontent?filepath=co/elastic/apm/elastic-apm-agent/1.2.0/elastic-apm-agent-1.2.0.jar
+RUN wget https://search.maven.org/remotecontent?filepath=co/elastic/apm/elastic-apm-agent/1.2.0/elastic-apm-agent-1.2.0.jar
 CMD java -javaagent:/usr/app/elastic-apm-agent-1.2.0.jar \
      -Delastic.apm.service_name=backend \
      -Delastic.apm.server_url=http://ec2-34-232-6-130.compute-1.amazonaws.com:8200 \
